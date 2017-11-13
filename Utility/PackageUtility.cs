@@ -620,7 +620,7 @@
                 Directory.Delete(extractedFolder, true);
             }
 
-            ZipFile.ExtractToDirectory(fullZipPath, extractedFolder);
+            ZipUtility.Unzip(fullZipPath, extractedFolder);
 
             //Delete the default files that come with the packages _rels, [Content_Types].xml, and packages folder            
             FileUtility.DeleteDirectory(Path.Combine(extractedFolder, "_rels"), true, false);
