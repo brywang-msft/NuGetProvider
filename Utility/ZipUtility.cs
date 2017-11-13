@@ -43,7 +43,7 @@ namespace Microsoft.PackageManagement.NuGetProvider
                             }
                         });
 
-                        ExecuteWithRetries(() => File.SetLastWriteTimeUtc(fileTargetPath, lastWriteTime.UtcDateTime));
+                        ExecuteWithRetries(() => { File.SetLastWriteTimeUtc(fileTargetPath, lastWriteTime.UtcDateTime); });
                     }
                     else
                     {
@@ -52,7 +52,7 @@ namespace Microsoft.PackageManagement.NuGetProvider
                             CreateDirectory(subPath);
                         }
 
-                        ExecuteWithRetries(() => Directory.SetLastWriteTimeUtc(fileTargetPath, lastWriteTime.UtcDateTime));
+                        ExecuteWithRetries(() => { Directory.SetLastWriteTimeUtc(fileTargetPath, lastWriteTime.UtcDateTime); });
                     }
                 }
             }
@@ -71,7 +71,7 @@ namespace Microsoft.PackageManagement.NuGetProvider
         private static T ExecuteWithRetries<T>(Func<T> action, int retries = 3, int retryMs = 500, int retryLinearBackoff = 500)
         {
             T res = default(T);
-            ExecuteWithRetries(() => res = action(), retries, retryMs, retryLinearBackoff);
+            ExecuteWithRetries(() => { res = action(); }, retries, retryMs, retryLinearBackoff);
             return res;
         }
 
