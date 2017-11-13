@@ -60,7 +60,7 @@ namespace Microsoft.PackageManagement.NuGetProvider
         
         private static void CreateDirectory(string directory)
         {
-            ExecuteWithRetries(() => Directory.CreateDirectory(directory));
+            ExecuteWithRetries(() => { Directory.CreateDirectory(directory); });
         }
 
         private static Stream GetStream(string filePath, FileMode mode)
